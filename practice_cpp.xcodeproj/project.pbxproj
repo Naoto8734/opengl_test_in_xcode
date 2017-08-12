@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5C31FE801F2301A1000EC6AF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C31FE7F1F2301A1000EC6AF /* main.cpp */; };
+		5C31FE881F2304F9000EC6AF /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C31FE871F2304F9000EC6AF /* GLUT.framework */; };
+		5C31FE8A1F230508000EC6AF /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C31FE891F230508000EC6AF /* OpenGL.framework */; };
+		5C31FE8C1F230514000EC6AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C31FE8B1F230514000EC6AF /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,9 @@
 /* Begin PBXFileReference section */
 		5C31FE7C1F2301A1000EC6AF /* practice_cpp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = practice_cpp; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C31FE7F1F2301A1000EC6AF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		5C31FE871F2304F9000EC6AF /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		5C31FE891F230508000EC6AF /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		5C31FE8B1F230514000EC6AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +38,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C31FE8C1F230514000EC6AF /* Foundation.framework in Frameworks */,
+				5C31FE8A1F230508000EC6AF /* OpenGL.framework in Frameworks */,
+				5C31FE881F2304F9000EC6AF /* GLUT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +52,7 @@
 			children = (
 				5C31FE7E1F2301A1000EC6AF /* practice_cpp */,
 				5C31FE7D1F2301A1000EC6AF /* Products */,
+				5C31FE861F2304F9000EC6AF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +70,16 @@
 				5C31FE7F1F2301A1000EC6AF /* main.cpp */,
 			);
 			path = practice_cpp;
+			sourceTree = "<group>";
+		};
+		5C31FE861F2304F9000EC6AF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5C31FE8B1F230514000EC6AF /* Foundation.framework */,
+				5C31FE891F230508000EC6AF /* OpenGL.framework */,
+				5C31FE871F2304F9000EC6AF /* GLUT.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +236,7 @@
 		5C31FE841F2301A1000EC6AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -223,6 +244,7 @@
 		5C31FE851F2301A1000EC6AF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
