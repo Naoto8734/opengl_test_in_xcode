@@ -9,48 +9,68 @@
 #include <OpenGL/OpenGL.h>
 #include <GLUT/GLUT.h>
 
-void display(void){
-	//レンダリング関数。レンダリング時に呼び出される。
-	glClear(GL_COLOR_BUFFER_BIT);	//全ピクセルのクリア
-	glColor3f(1.0, 1.0, 1.0);	//白
-	glBegin(GL_POLYGON);	//ポリゴン描画開始
-	glVertex3f(0.25, 0.25, 0.0);
-	glVertex3f(0.75, 0.25, 0.0);
-	glVertex3f(0.75, 0.75, 0.0);
-	glVertex3f(0.25, 0.75, 0.0);
-	glEnd();
-	glFlush();	//バッファリングされたopenglのルーチンを開始
-}
+static GLfloat spin = 0.0;	//係数
 
 void init(void){
 	glClearColor(0.0, 1.0, 0.0, 0.0);	//緑でクリア
-	glMatrixMode(GL_PROJECTION);	//視野に関する値を初期化
+	glShadeModel(GL_FLAT);
+}
+
+void display(void){
+	//レンダリング関数。レンダリング時に呼び出される。
+	glClear(GL_COLOR_BUFFER_BIT);	//全ピクセルのクリア
+	glPushMatrix();
+	glRotatef(spin, 0.0, 0.0, 1.0);
+	glColor3f(1.0, 1.0, 1.0);	//白
+	glRectf(-25.0, -25.0, 25.0, 25.0);
+	glPopMatrix();
+	glutSwapBuffers();
+}
+
+void spinMatrix(void){
+	spin = spin + 2.0;
+	if (spin > 360.0) {
+		spin -= 360.0;
+	}
+	glutPostRedisplay();
+}
+
+void reshape(int w, int h){
+	//ウィンドウサイズ変更時のコールバック関数
+	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
+	glOrtho(-50.0, 50.0, -50.0, 50.0, -1.0, 1.0);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 }
 
-/*
-void setup(void) {
-
+void mouse(int button, int state, int x, int y){
+	//マウス用コールバック関数
+	switch (button){
+			case GLUT_LEFT_BUTTON:
+			if (state == GLUT_DOWN) glutIdleFunc(spinMatrix);
+			break;
+			
+			case GLUT_MIDDLE_BUTTON:
+			if  (state == GLUT_DOWN) glutIdleFunc(NULL);
+			break;
+			
+			default:
+			break;
+	}
 }
 
-void draw(void) {
-
-}
-
-
-void resize(int width, int height) {
-
-}
-*/
 int main(int argc, char * argv[]) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(250, 250);
 	glutInitWindowPosition(100, 100);
-	glutCreateWindow("This is window title");
+	glutCreateWindow(argv[0]);
 	init();
 	glutDisplayFunc(display);	//コールバック関数の登録
+	glutReshapeFunc(reshape);
+	glutMouseFunc(mouse);
 	glutMainLoop();
 	return 0;
 }
