@@ -9,30 +9,20 @@
 #include <OpenGL/OpenGL.h>
 #include <GLUT/GLUT.h>
 
-static GLfloat spin = 0.0;	//係数
-
 void init(void){
-	glClearColor(0.0, 1.0, 0.0, 0.0);	//緑でクリア
+	glClearColor(0.0, 0.8, 0.0, 0.0);	//緑でクリア
 	glShadeModel(GL_FLAT);
 }
 
 void display(void){
 	//レンダリング関数。レンダリング時に呼び出される。
 	glClear(GL_COLOR_BUFFER_BIT);	//全ピクセルのクリア
-	glPushMatrix();
-	glRotatef(spin, 0.0, 0.0, 1.0);
 	glColor3f(1.0, 1.0, 1.0);	//白
-	glRectf(-25.0, -25.0, 25.0, 25.0);
-	glPopMatrix();
-	glutSwapBuffers();
-}
-
-void spinMatrix(void){
-	spin = spin + 2.0;
-	if (spin > 360.0) {
-		spin -= 360.0;
-	}
-	glutPostRedisplay();
+	glLoadIdentity();	//行列のクリア
+	gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);	//視野変換
+	glScalef(1.0, 2.0, 1.0);
+	glutWireTeapot(1);
+	glFlush();
 }
 
 void reshape(int w, int h){
@@ -40,37 +30,19 @@ void reshape(int w, int h){
 	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(-50.0, 50.0, -50.0, 50.0, -1.0, 1.0);
+	glFrustum(-1.0, 1.0, -1.0, 1.0, 1.5, 20.0);
 	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-}
-
-void mouse(int button, int state, int x, int y){
-	//マウス用コールバック関数
-	switch (button){
-			case GLUT_LEFT_BUTTON:
-			if (state == GLUT_DOWN) glutIdleFunc(spinMatrix);
-			break;
-			
-			case GLUT_MIDDLE_BUTTON:
-			if  (state == GLUT_DOWN) glutIdleFunc(NULL);
-			break;
-			
-			default:
-			break;
-	}
 }
 
 int main(int argc, char * argv[]) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-	glutInitWindowSize(250, 250);
+	glutInitWindowSize(500, 500);
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow(argv[0]);
 	init();
 	glutDisplayFunc(display);	//コールバック関数の登録
 	glutReshapeFunc(reshape);
-	glutMouseFunc(mouse);
 	glutMainLoop();
 	return 0;
 }
