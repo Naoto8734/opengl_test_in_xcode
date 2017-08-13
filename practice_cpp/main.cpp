@@ -7,26 +7,38 @@
 //
 #include <iostream>
 
+class myclass {
+	//非公開関数、非公開変数。
+	int a;
+
+public:
+	//公開関数、変数。
+	void set_a(int num);
+	int get_a();
+	int b;
+};
+
+void myclass::set_a(int num){
+	a = num;
+}
+
+int myclass::get_a(){
+	return a;
+}
+
 int main(int argc, char * argv[]) {
-	//素数判定プログラム
-	int MAX = 0;
-	std::cout << "素数を判定します。\n最大値を入力してください。\n";
-	std::cin >> MAX;
-	std::cout << MAX << "までの素数を判別します。\n";
-	for (int i = 1; i <= MAX; i++){
-		//約数を数える。
-		int divisor = 0;
-		for (int j = 1; j <= i; j ++) {
-			//std::cout << i << " % " << j << " = " << i%j << "\n";
-			if (i%j == 0) divisor++;
-		}
-		
-		//約数の個数で判別。
-		if (divisor == 2) {
-			std::cout << i << "は素数です。\n";
-		}else{
-			//std::cout << i << "は素数ではありません。\n";
-		}
-	}
+	myclass myobj1, myobj2;
+	
+	myobj1.set_a(114);
+	myobj2.set_a(514);
+	
+	std::cout << myobj1.get_a() << "\n";
+	std::cout << myobj2.get_a() << "\n";
+	
+	myobj1.b = 810;
+	myobj2.b = 931;
+	
+	std::cout << myobj1.b + myobj2.b << "\n";
+	
 	return 0;
 }
