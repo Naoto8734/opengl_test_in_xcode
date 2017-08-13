@@ -5,44 +5,99 @@
 //  Created by Naoto on 2017/07/22.
 //  Copyright © 2017年 NYamashita. All rights reserved.
 //
+
+/*-----------------------------------------------------------------------------------*
+ * インクルード
+ *-----------------------------------------------------------------------------------*/
+
 #include <iostream>
 #include <OpenGL/OpenGL.h>
 #include <GLUT/GLUT.h>
 
-void init(void){
-	glClearColor(0.0, 0.8, 0.0, 0.0);	//緑でクリア
-	glShadeModel(GL_FLAT);
+/*-----------------------------------------------------------------------------------*
+ * グローバル変数
+ *-----------------------------------------------------------------------------------*/
+int window_height = 500;
+int window_width = 500;
+const char GAME_TITLE[] = "Ziggurat";
+
+/*-----------------------------------------------------------------------------------*
+ * 関数のプロトタイプ宣言
+ *-----------------------------------------------------------------------------------*/
+void Init(void);
+void Display(void);
+void Reshape(int w, int h);
+void Keyboard(unsigned char key, int x, int y);
+void KeyboardUp(unsigned char key, int x, int y);
+void Close();
+
+/*-----------------------------------------------------------------------------------*
+ * コールバック関数
+ *-----------------------------------------------------------------------------------*/
+
+void Init(void){
+	glClearColor(0.0, 0.6, 0.0, 0.0);	//黒や白より更新がわかりやすいので、緑でクリア。
 }
 
-void display(void){
-	//レンダリング関数。レンダリング時に呼び出される。
-	glClear(GL_COLOR_BUFFER_BIT);	//全ピクセルのクリア
-	glColor3f(1.0, 1.0, 1.0);	//白
-	glLoadIdentity();	//行列のクリア
-	gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);	//視野変換
-	glScalef(1.0, 2.0, 1.0);
-	glutWireTeapot(1);
+void Display(void){
+	glClear(GL_COLOR_BUFFER_BIT);
+	
+	glBegin(GL_POLYGON);
+	glColor3d(1.0, 0.0, 0.0);
+	glVertex2d(-0.9, -0.9);
+	glColor3d(0.0, 1.0, 0.0);
+	glVertex2d(0.9, -0.9);
+	glColor3d(0.0, 0.0, 1.0);
+	glVertex2d(0.9, 0.9);
+	glColor3d(1.0, 1.0, 0.0);
+	glVertex2d(-0.9, 0.9);
+	glEnd();
+	
 	glFlush();
 }
 
-void reshape(int w, int h){
-	//ウィンドウサイズ変更時のコールバック関数
-	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glFrustum(-1.0, 1.0, -1.0, 1.0, 1.5, 20.0);
-	glMatrixMode(GL_MODELVIEW);
+void Reshape(int w, int h){
+	window_width = w;
+	window_height = h;
+
 }
 
+void Keyboard(unsigned char key, int x, int y){
+	switch ( key ){
+		case 0x71:	//q
+			Close();
+			break;
+	}
+}
+
+void KeyboardUp(unsigned char key, int x, int y){
+	
+}
+
+void Close(){
+	std::cout << "Finish game.\n";
+	exit(0);
+}
+
+/*-----------------------------------------------------------------------------------*
+ * メインループ
+ *-----------------------------------------------------------------------------------*/
 int main(int argc, char * argv[]) {
+	
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-	glutInitWindowSize(500, 500);
-	glutInitWindowPosition(100, 100);
-	glutCreateWindow(argv[0]);
-	init();
-	glutDisplayFunc(display);	//コールバック関数の登録
-	glutReshapeFunc(reshape);
+	glutInitDisplayMode(GLUT_RGBA);
+	glutInitWindowSize(window_width, window_height);
+	glutCreateWindow(GAME_TITLE);
+	
+	Init();
+	
+	glutDisplayFunc(Display);
+	glutReshapeFunc(Reshape);
+	glutWMCloseFunc(Close);
+	glutKeyboardFunc(Keyboard);
+	glutKeyboardUpFunc(KeyboardUp);
+	
 	glutMainLoop();
+	
 	return 0;
 }
