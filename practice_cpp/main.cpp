@@ -8,10 +8,25 @@
 #include <iostream>
 
 int main(int argc, char * argv[]) {
-	int i = 0;
-	char string[80];
-	std::cout << "整数と文字列を入力してください。\n";
-	std::cin >> i >> string;
-	std::cout << "入力された数字は" << i << "です。\n文字列は" << string << "です。\n";
+	//素数判定プログラム
+	int MAX = 0;
+	std::cout << "素数を判定します。\n最大値を入力してください。\n";
+	std::cin >> MAX;
+	std::cout << MAX << "までの素数を判別します。\n";
+	for (int i = 1; i <= MAX; i++){
+		//約数を数える。
+		int divisor = 0;
+		for (int j = 1; j <= i; j ++) {
+			//std::cout << i << " % " << j << " = " << i%j << "\n";
+			if (i%j == 0) divisor++;
+		}
+		
+		//約数の個数で判別。
+		if (divisor == 2) {
+			std::cout << i << "は素数です。\n";
+		}else{
+			//std::cout << i << "は素数ではありません。\n";
+		}
+	}
 	return 0;
 }
