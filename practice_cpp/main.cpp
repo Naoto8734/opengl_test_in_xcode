@@ -8,6 +8,10 @@
 #include <iostream>
 
 int main(int argc, char * argv[]) {
-	std::cout << "hello world!\n";
+	int i = 0;
+	char string[80];
+	std::cout << "整数と文字列を入力してください。\n";
+	std::cin >> i >> string;
+	std::cout << "入力された数字は" << i << "です。\n文字列は" << string << "です。\n";
 	return 0;
 }
