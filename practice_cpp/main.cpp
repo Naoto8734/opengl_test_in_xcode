@@ -6,39 +6,40 @@
 //  Copyright © 2017年 NYamashita. All rights reserved.
 //
 #include <iostream>
+#include <fstream>
 
-class myclass {
-	//非公開関数、非公開変数。
-	int a;
-
-public:
-	//公開関数、変数。
-	void set_a(int num);
-	int get_a();
-	int b;
-};
-
-void myclass::set_a(int num){
-	a = num;
-}
-
-int myclass::get_a(){
-	return a;
-}
+static const std::string HOME_DIR = "/Users/naoto/Documents/swift_xcode/practice_cpp/practice_cpp/";
 
 int main(int argc, char * argv[]) {
-	myclass myobj1, myobj2;
+	//ファイル入出力の基本
 	
-	myobj1.set_a(114);
-	myobj2.set_a(514);
+	//ファイルの作成
+	std::ofstream fout(HOME_DIR+"hello.txt");
 	
-	std::cout << myobj1.get_a() << "\n";
-	std::cout << myobj2.get_a() << "\n";
+	if (!fout){
+		std::cout << "出力ファイルが開けません";
+		return 1;
+	}
 	
-	myobj1.b = 810;
-	myobj2.b = 931;
+	fout << "Hello world!\n";
+	fout << 114514 << "\n";
+	fout.close();
 	
-	std::cout << myobj1.b + myobj2.b << "\n";
+	//ファイルの読み込み
+	std::ifstream fin(HOME_DIR+"hello.txt");
+	
+	if (!fin){
+		std::cout << "入力ファイルが読み込めません";
+		return 1;
+	}
+	
+	char str[80];
+	int i;
+	
+	fin >> str ;
+	std::cout << str << " " << i << std::endl;
+	
+	fin.close();
 	
 	return 0;
 }
