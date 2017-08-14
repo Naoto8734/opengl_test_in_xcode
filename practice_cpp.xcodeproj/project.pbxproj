@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C0857091F416FCC00BE798C /* test_ass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C0857071F416FCC00BE798C /* test_ass.cpp */; };
 		5C31FE801F2301A1000EC6AF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C31FE7F1F2301A1000EC6AF /* main.cpp */; };
 		5C31FE881F2304F9000EC6AF /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C31FE871F2304F9000EC6AF /* GLUT.framework */; };
 		5C31FE8A1F230508000EC6AF /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C31FE891F230508000EC6AF /* OpenGL.framework */; };
@@ -26,6 +27,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5C0857071F416FCC00BE798C /* test_ass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_ass.cpp; sourceTree = "<group>"; };
+		5C0857081F416FCC00BE798C /* test_ass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test_ass.hpp; sourceTree = "<group>"; };
 		5C31FE7C1F2301A1000EC6AF /* practice_cpp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = practice_cpp; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C31FE7F1F2301A1000EC6AF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5C31FE871F2304F9000EC6AF /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
@@ -68,6 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				5C31FE7F1F2301A1000EC6AF /* main.cpp */,
+				5C0857071F416FCC00BE798C /* test_ass.cpp */,
+				5C0857081F416FCC00BE798C /* test_ass.hpp */,
 			);
 			path = practice_cpp;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C31FE801F2301A1000EC6AF /* main.cpp in Sources */,
+				5C0857091F416FCC00BE798C /* test_ass.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +274,7 @@
 				5C31FE851F2301A1000EC6AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
