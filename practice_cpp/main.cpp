@@ -34,7 +34,7 @@ GLdouble vertex[][3] = {
 	{ 1.0, 1.0, 1.0 },
 	{ 0.0, 1.0, 1.0 }
 };
-
+/*
 int edge[][2] = {
 	{ 0, 1 },
 	{ 1, 2 },
@@ -48,6 +48,33 @@ int edge[][2] = {
 	{ 1, 5 },
 	{ 2, 6 },
 	{ 3, 7 }
+};*/
+
+int face[][4] = {
+	{ 0, 1, 2, 3 },
+	{ 1, 5, 6, 2 },
+	{ 5, 4, 7, 6 },
+	{ 4, 0, 3, 7 },
+	{ 4, 5, 1, 0 },
+	{ 3, 2, 6, 7 }
+};
+/*
+GLdouble color[][3] = {
+	{ 1.0, 0.0, 0.0 },
+	{ 0.0, 1.0, 0.0 },
+	{ 0.0, 0.0, 1.0 },
+	{ 1.0, 1.0, 0.0 },
+	{ 1.0, 0.0, 1.0 },
+	{ 0.0, 1.0, 1.0 }
+};*/
+
+GLdouble normal[][3] = {
+	{ 0.0, 0.0,-1.0 },
+	{ 1.0, 0.0, 0.0 },
+	{ 0.0, 0.0, 1.0 },
+	{-1.0, 0.0, 0.0 },
+	{ 0.0,-1.0, 0.0 },
+	{ 0.0, 1.0, 0.0 }
 };
 
 /*-----------------------------------------------------------------------------------*
@@ -69,6 +96,14 @@ void Close();
 
 void Init(void){
 	glClearColor(0.0, 0.6, 0.0, 0.0);	//黒や白より更新がわかりやすいので、緑でクリア。
+	
+	glEnable(GL_DEPTH_TEST);
+	
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_FRONT);
+	
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
 }
 
 
@@ -80,21 +115,24 @@ void Idle(void)
 void Display(void){
 	static int r = 0;
 	
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	
 	gluLookAt(3.0, 4.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-	glRotated((double)r, 0.1, 1.0, 0.3);
+	glRotated((double)r, 1.0, -1.0, 0.0);
 	
 	glColor3d(1.0, 1.0, 1.0);
-	glBegin(GL_LINES);
-	for (int i = 0; i < 12; ++i) {
-		glVertex3dv(vertex[edge[i][0]]);
-		glVertex3dv(vertex[edge[i][1]]);
+	glBegin(GL_QUADS);
+	for (int i = 0; i < 6; i++) {
+		//glNormal3dv(color[i]);
+		glNormal3dv(normal[i]);
+		for (int j = 0; j < 4; j++) {
+			glVertex3dv(vertex[face[i][j]]);
+		}
 	}
 	glEnd();
 	
-	glFlush();
+	glutSwapBuffers();
 	
 	if (++r >= 360) r = 0;
 }
@@ -105,7 +143,7 @@ void Reshape(int w, int h){
 	
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(30.0, (double)h / (double)w, 1.0, 100.0);
+	gluPerspective(30.0, 1.0, 1.0, 100.0);
 	
 	glMatrixMode(GL_MODELVIEW);
 }
@@ -181,7 +219,7 @@ void Close(){
 int main(int argc, char * argv[]) {
 	
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGBA);
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInitWindowSize(window_width, window_height);
 	glutCreateWindow(GAME_TITLE);
 	
