@@ -7,14 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C08570D1F417D8800BE798C /* input_callback_func.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C08570B1F417D8800BE798C /* input_callback_func.cpp */; };
-		5C0857101F417E9300BE798C /* display_callback_func.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C08570E1F417E9300BE798C /* display_callback_func.cpp */; };
 		5C0857121F4185EA00BE798C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C0857111F4185EA00BE798C /* main.cpp */; };
-		5C31FE801F2301A1000EC6AF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C31FE7F1F2301A1000EC6AF /* main.cpp */; };
 		5C31FE881F2304F9000EC6AF /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C31FE871F2304F9000EC6AF /* GLUT.framework */; };
 		5C31FE8A1F230508000EC6AF /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C31FE891F230508000EC6AF /* OpenGL.framework */; };
 		5C31FE8C1F230514000EC6AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C31FE8B1F230514000EC6AF /* Foundation.framework */; };
-		5CE909881F4145D3009F725A /* cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CE909861F4145D3009F725A /* cube.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,19 +26,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5C08570A1F41768100BE798C /* grobal_variables.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = grobal_variables.hpp; sourceTree = "<group>"; };
-		5C08570B1F417D8800BE798C /* input_callback_func.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input_callback_func.cpp; sourceTree = "<group>"; };
-		5C08570C1F417D8800BE798C /* input_callback_func.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = input_callback_func.hpp; sourceTree = "<group>"; };
-		5C08570E1F417E9300BE798C /* display_callback_func.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = display_callback_func.cpp; sourceTree = "<group>"; };
-		5C08570F1F417E9300BE798C /* display_callback_func.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = display_callback_func.hpp; sourceTree = "<group>"; };
 		5C0857111F4185EA00BE798C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5C31FE7C1F2301A1000EC6AF /* practice_cpp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = practice_cpp; sourceTree = BUILT_PRODUCTS_DIR; };
-		5C31FE7F1F2301A1000EC6AF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5C31FE871F2304F9000EC6AF /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		5C31FE891F230508000EC6AF /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		5C31FE8B1F230514000EC6AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		5CE909861F4145D3009F725A /* cube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cube.cpp; sourceTree = "<group>"; };
-		5CE909871F4145D3009F725A /* cube.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cube.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,14 +67,6 @@
 		5C31FE7E1F2301A1000EC6AF /* practice_cpp */ = {
 			isa = PBXGroup;
 			children = (
-				5C08570E1F417E9300BE798C /* display_callback_func.cpp */,
-				5C08570F1F417E9300BE798C /* display_callback_func.hpp */,
-				5C31FE7F1F2301A1000EC6AF /* main.cpp */,
-				5C08570B1F417D8800BE798C /* input_callback_func.cpp */,
-				5C08570C1F417D8800BE798C /* input_callback_func.hpp */,
-				5CE909861F4145D3009F725A /* cube.cpp */,
-				5CE909871F4145D3009F725A /* cube.hpp */,
-				5C08570A1F41768100BE798C /* grobal_variables.hpp */,
 				5C0857111F4185EA00BE798C /* main.cpp */,
 			);
 			path = practice_cpp;
@@ -159,11 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CE909881F4145D3009F725A /* cube.cpp in Sources */,
-				5C31FE801F2301A1000EC6AF /* main.cpp in Sources */,
-				5C08570D1F417D8800BE798C /* input_callback_func.cpp in Sources */,
 				5C0857121F4185EA00BE798C /* main.cpp in Sources */,
-				5C0857101F417E9300BE798C /* display_callback_func.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
