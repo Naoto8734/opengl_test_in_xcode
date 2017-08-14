@@ -77,7 +77,7 @@ GLdouble normal[][3] = {
 	{ 0.0, 1.0, 0.0 }
 };
 
-GLfloat light0pos[] = { 0.0, 3.0, 4.0, 1.0 };
+GLfloat light0pos[] = { 0.0, 3.0, -4.0, 1.0 };
 GLfloat light1pos[] = { 5.0, 3.0, 0.0, 1.0 };
 
 GLfloat red[] = {0.8, 0.2, 0.2, 1.0};
@@ -137,7 +137,7 @@ void Display(void){
 	glRotated((double)r, 1.0, -1.0, 0.0);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, red);
 	
-	Cube();
+	glutSolidSphere(1.0, 32.0, 16.0);
 	glPushMatrix();
 	glTranslated(1.0, 1.0, 1.0);
 	glRotated((double)(r * 2), 1.0, 1.0, 0.0);

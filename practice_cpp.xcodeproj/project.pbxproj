@@ -11,6 +11,7 @@
 		5C31FE881F2304F9000EC6AF /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C31FE871F2304F9000EC6AF /* GLUT.framework */; };
 		5C31FE8A1F230508000EC6AF /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C31FE891F230508000EC6AF /* OpenGL.framework */; };
 		5C31FE8C1F230514000EC6AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C31FE8B1F230514000EC6AF /* Foundation.framework */; };
+		5CE909881F4145D3009F725A /* cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CE909861F4145D3009F725A /* cube.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		5C31FE871F2304F9000EC6AF /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		5C31FE891F230508000EC6AF /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		5C31FE8B1F230514000EC6AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5CE909861F4145D3009F725A /* cube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cube.cpp; sourceTree = "<group>"; };
+		5CE909871F4145D3009F725A /* cube.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cube.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				5C31FE7F1F2301A1000EC6AF /* main.cpp */,
+				5CE909861F4145D3009F725A /* cube.cpp */,
+				5CE909871F4145D3009F725A /* cube.hpp */,
 			);
 			path = practice_cpp;
 			sourceTree = "<group>";
@@ -139,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CE909881F4145D3009F725A /* cube.cpp in Sources */,
 				5C31FE801F2301A1000EC6AF /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,6 +274,7 @@
 				5C31FE851F2301A1000EC6AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
