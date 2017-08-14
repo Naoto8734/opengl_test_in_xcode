@@ -7,3 +7,21 @@
 //
 
 #include "cube.hpp"
+#include "grobal_variables.hpp"
+
+#include <iostream>
+#include <OpenGL/OpenGL.h>
+#include <GLUT/GLUT.h>
+
+//その他
+void Cube(void) {
+	glBegin(GL_QUADS);
+	for (int i = 0; i < 6; i++) {
+		//glNormal3dv(color[i]);
+		glNormal3dv(normal[i]);
+		for (int j = 0; j < 4; j++) {
+			glVertex3dv(vertex[face[i][j]]);
+		}
+	}
+	glEnd();
+}

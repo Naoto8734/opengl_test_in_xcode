@@ -16,6 +16,8 @@
 #include <iostream>
 #include <OpenGL/OpenGL.h>
 #include <GLUT/GLUT.h>
+#include "cube.hpp"
+#include "grobal_variables.hpp"
 
 /*-----------------------------------------------------------------------------------*
  * グローバル変数
@@ -97,9 +99,6 @@ void KeyboardUp(unsigned char key, int x, int y);
 void Mouse(int button, int state, int x, int y);
 void Motion(int x, int y);
 void Close();
-
-//その他
-void Cube(void);
 
 /*-----------------------------------------------------------------------------------*
  * コールバック関数
@@ -228,23 +227,6 @@ void Close(){
 	std::cout << "Finish game.\n";
 	exit(0);
 }
-
-/*-----------------------------------------------------------------------------------*
- * その他の関数
- *-----------------------------------------------------------------------------------*/
-
-void Cube(void) {
-	glBegin(GL_QUADS);
-	for (int i = 0; i < 6; i++) {
-		//glNormal3dv(color[i]);
-		glNormal3dv(normal[i]);
-		for (int j = 0; j < 4; j++) {
-			glVertex3dv(vertex[face[i][j]]);
-		}
-	}
-	glEnd();
-}
-
 /*-----------------------------------------------------------------------------------*
  * メインループ
  *-----------------------------------------------------------------------------------*/

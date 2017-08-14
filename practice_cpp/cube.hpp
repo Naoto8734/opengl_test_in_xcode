@@ -9,6 +9,6 @@
 #ifndef cube_hpp
 #define cube_hpp
 
-#include <stdio.h>
+void Cube(void);
 
 #endif /* cube_hpp */
