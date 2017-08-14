@@ -17,6 +17,8 @@
 #include <GLUT/GLUT.h>
 #endif
 
+//実体はmain.cppに記載。
+
 extern int window_height;
 extern int window_width;
 extern const char GAME_TITLE[];

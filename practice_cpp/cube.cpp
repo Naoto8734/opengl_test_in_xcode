@@ -7,11 +7,6 @@
 //
 
 #include "cube.hpp"
-#include "grobal_variables.hpp"
-
-#include <iostream>
-#include <OpenGL/OpenGL.h>
-#include <GLUT/GLUT.h>
 
 //その他
 void Cube(void) {

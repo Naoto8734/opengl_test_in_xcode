@@ -9,6 +9,22 @@
 #ifndef cube_hpp
 #define cube_hpp
 
+#ifndef iostream
+#include <iostream>
+#endif
+
+#ifndef OpenGL_OpenGL_h
+#include <OpenGL/OpenGL.h>
+#endif
+
+#ifndef GLUT_GLUT_h
+#include <GLUT/GLUT.h>
+#endif
+
+#ifndef grobal_variables_hpp
+#include "grobal_variables.hpp"
+#endif
+
 void Cube(void);
 
 #endif /* cube_hpp */
