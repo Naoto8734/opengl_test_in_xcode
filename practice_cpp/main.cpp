@@ -77,9 +77,17 @@ GLdouble normal[][3] = {
 	{ 0.0, 1.0, 0.0 }
 };
 
+GLfloat light0pos[] = { 0.0, 3.0, 4.0, 1.0 };
+GLfloat light1pos[] = { 5.0, 3.0, 0.0, 1.0 };
+
+GLfloat red[] = {0.8, 0.2, 0.2, 1.0};
+GLfloat blue[] = {0.2, 0.2, 1.0, 1.0};
+GLfloat yellow[] = {0.8, 0.8, 0.1, 1.0};
+
 /*-----------------------------------------------------------------------------------*
  * 関数のプロトタイプ宣言
  *-----------------------------------------------------------------------------------*/
+//コールバッック関数
 void Init(void);
 void Idle(void);
 void Display(void);
@@ -90,12 +98,15 @@ void Mouse(int button, int state, int x, int y);
 void Motion(int x, int y);
 void Close();
 
+//その他
+void Cube(void);
+
 /*-----------------------------------------------------------------------------------*
  * コールバック関数
  *-----------------------------------------------------------------------------------*/
 
 void Init(void){
-	glClearColor(0.0, 0.6, 0.0, 0.0);	//黒や白より更新がわかりやすいので、緑でクリア。
+	glClearColor(0.1, 0.7, 0.1, 0.0);	//黒や白より更新がわかりやすいので、緑でクリア。
 	
 	glEnable(GL_DEPTH_TEST);
 	
@@ -104,6 +115,9 @@ void Init(void){
 	
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT1);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, yellow);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, blue);
 }
 
 
@@ -116,21 +130,21 @@ void Display(void){
 	static int r = 0;
 	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glLoadIdentity();
+	glLightfv(GL_LIGHT0, GL_POSITION, light0pos);
+	glLightfv(GL_LIGHT1, GL_POSITION, light1pos);
+	glPushMatrix();
 	
-	gluLookAt(3.0, 4.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	glRotated((double)r, 1.0, -1.0, 0.0);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, red);
 	
-	glColor3d(1.0, 1.0, 1.0);
-	glBegin(GL_QUADS);
-	for (int i = 0; i < 6; i++) {
-		//glNormal3dv(color[i]);
-		glNormal3dv(normal[i]);
-		for (int j = 0; j < 4; j++) {
-			glVertex3dv(vertex[face[i][j]]);
-		}
-	}
-	glEnd();
+	Cube();
+	glPushMatrix();
+	glTranslated(1.0, 1.0, 1.0);
+	glRotated((double)(r * 2), 1.0, 1.0, 0.0);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, blue);
+	Cube();
+	glPopMatrix();
+	glPopMatrix();
 	
 	glutSwapBuffers();
 	
@@ -146,6 +160,8 @@ void Reshape(int w, int h){
 	gluPerspective(30.0, 1.0, 1.0, 100.0);
 	
 	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(3.0, 4.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 }
 
 void Keyboard(unsigned char key, int x, int y){
@@ -211,6 +227,22 @@ void Motion(int x, int y){
 void Close(){
 	std::cout << "Finish game.\n";
 	exit(0);
+}
+
+/*-----------------------------------------------------------------------------------*
+ * その他の関数
+ *-----------------------------------------------------------------------------------*/
+
+void Cube(void) {
+	glBegin(GL_QUADS);
+	for (int i = 0; i < 6; i++) {
+		//glNormal3dv(color[i]);
+		glNormal3dv(normal[i]);
+		for (int j = 0; j < 4; j++) {
+			glVertex3dv(vertex[face[i][j]]);
+		}
+	}
+	glEnd();
 }
 
 /*-----------------------------------------------------------------------------------*
