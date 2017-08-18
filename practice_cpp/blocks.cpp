@@ -8,5 +8,26 @@
 
 #include "blocks.hpp"
 
-//ブロックの作成。クラス。
+//ブロックのクラス。
+Block::Block(){
+	//コンストラクタ
+	block_type = rand() % 8;	//8種類
+	std::cout << "Type " << block_type << " block is created." <<std::endl;
+}
 
+Block::Block(int block_n){
+	//デバッグ用？コンストラクタ
+	if ((block_n<8) && (block_n>0)){
+		block_type = block_n;
+		std::cout << "Type " << block_type << " block is created." <<std::endl;
+	}else{
+		std::cerr << "ERROR : block type none" << std::endl;
+		exit(1);
+	}
+}
+
+Block::~Block(){
+	//デストラクタ
+	std::cerr << "block is destructed." << std::endl;
+	
+}

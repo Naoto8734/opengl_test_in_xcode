@@ -13,4 +13,13 @@
 
 //ブロックの作成。クラス。
 
+class Block{
+private:
+	int block_type;//0~7までの8種類。
+public:
+	Block();	//コンストラクタ
+	Block(int block_n);	//オーバーライド
+	~Block();	//デストラクタ
+};
+
 #endif /* blocks_hpp */
