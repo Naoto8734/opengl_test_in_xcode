@@ -31,3 +31,14 @@ Block::~Block(){
 	std::cerr << "block is destructed." << std::endl;
 	
 }
+
+void Block::draw(){
+	//displayのループ中で呼び出し。
+	glPushMatrix();
+	glTranslated(xd, yd, zd);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, red);
+	glutSolidCube(1.0);
+	glPopMatrix();
+}
+
+Block blocks_obj[] = {};

@@ -6,7 +6,9 @@
 //  Copyright © 2017年 NYamashita. All rights reserved.
 //
 
+#ifndef assist_funcs_hpp
 #include "assist_funcs.hpp"
+#endif
 
 //グローバル変数宣言
 const char game_title[] = "ziggurat";
@@ -31,6 +33,9 @@ int main(int argc, char *argv[]){
 	
 	//初期化
 	init();
+	
+	//最初の1ブロックを作成
+	blocks_obj[0] = Block();
 	
 	glutMainLoop();//終了はexitで行う
 	

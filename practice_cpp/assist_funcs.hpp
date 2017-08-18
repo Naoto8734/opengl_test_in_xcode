@@ -16,6 +16,12 @@
 #include <time.h>	//乱数の初期化用
 #include "blocks.hpp"
 
+//グローバル変数
+extern double xd;
+extern double yd;
+extern double zd;
+extern const GLfloat red[];
+
 //プロトタイプ宣言
 void init();	//コールバック関数群
 void display();

@@ -11,15 +11,15 @@
 //文字の描画について。
 
 //変数宣言
-static double xd = 0.0;
-static double yd = 0.0;
-static double zd = 0.0;
+double xd = 0.0;
+double yd = 0.0;
+double zd = 0.0;
 static double rot = 0.0;
 static const GLfloat ground[][4] = {
 	{ 0.6, 0.6, 0.6, 1.0 },
 	{ 0.3, 0.3, 0.3, 1.0 }
 };
-static const GLfloat red[] = {0.8, 0.1, 0.1, 1.0};
+const GLfloat red[] = {0.8, 0.1, 0.1, 1.0};
 static const GLfloat pos0[] = {0.0, 5.0, 3.0, 1.0};
 static const GLfloat pos1[] = {0.0, 5.0, -3.0, 1.0};
 
@@ -65,9 +65,7 @@ void display(){
 	glEnd();
 	glTranslated(0.5, 0.0, 0.5);
 	
-	glTranslated(xd, yd, zd);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, red);
-	glutSolidCube(1.0);
+	blocks_obj[0].draw();
 	
 	glutSwapBuffers();
 }
