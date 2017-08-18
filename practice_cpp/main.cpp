@@ -6,9 +6,7 @@
 //  Copyright © 2017年 NYamashita. All rights reserved.
 //
 
-#include <iostream>
-#include <OpenGL/OpenGL.h>
-#include <GLUT/GLUT.h>
+#include "assist_funcs.hpp"
 
 //グローバル変数宣言
 const char game_title[] = "ziggurat";
