@@ -16,13 +16,20 @@
 
 class Block{
 private:
-	int block_type;//0~7までの8種類。
+	int block_type;	//0~7までの8種類。
+	GLdouble pos_x;	//ブロックの座標
+	GLdouble pos_y;
+	GLdouble pos_z;
+	bool canMove;
 public:
 	Block();	//コンストラクタ
 	Block(int block_n);	//コンストラクタのオーバーライド。デバッグ用。
 	~Block();	//デストラクタ
 	void draw();
+	void move(unsigned int direction);
+	void drop();
+	void return_position();
 };
 
-extern Block blocks_obj[];
+extern Block obj;
 #endif /* blocks_hpp */

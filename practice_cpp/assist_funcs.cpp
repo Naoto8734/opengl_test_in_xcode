@@ -11,17 +11,15 @@
 //文字の描画について。
 
 //変数宣言
-double xd = 0.0;
-double yd = 0.0;
-double zd = 0.0;
-static double rot = 0.0;
 static const GLfloat ground[][4] = {
 	{ 0.6, 0.6, 0.6, 1.0 },
 	{ 0.3, 0.3, 0.3, 1.0 }
 };
 const GLfloat red[] = {0.8, 0.1, 0.1, 1.0};
-static const GLfloat pos0[] = {0.0, 5.0, 3.0, 1.0};
-static const GLfloat pos1[] = {0.0, 5.0, -3.0, 1.0};
+static const GLfloat pos0[] = {0.0, 25.0, 3.0, 1.0};
+static const GLfloat pos1[] = {0.0, 25.0, -3.0, 1.0};
+int block_num  = 0;
+static int timer_sec = 17;
 
 void init(){
 	glClearColor(0.1, 0.6, 0.1, 1.0);	//緑でクリア
@@ -41,13 +39,13 @@ void display(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();	//行列の初期化
 	
-	gluLookAt(3.0, 4.0, 5.0,
+	gluLookAt(3.0, 25.0, 5.0,
 			  0.0, 0.0, 1.0,
 			  0.0, 1.0, 0.0);	//視野変換
 	glLightfv(GL_LIGHT0, GL_POSITION, pos0);
 	glLightfv(GL_LIGHT1, GL_POSITION, pos1);
 	
-	glRotated(rot, 0.0, 1.0, 0.0);
+	//glRotated(rot, 0.0, 1.0, 0.0);
 	
 	//モデリング変換
 	//地面の描画
@@ -65,7 +63,7 @@ void display(){
 	glEnd();
 	glTranslated(0.5, 0.0, 0.5);
 	
-	blocks_obj[0].draw();
+	obj.draw();
 	
 	glutSwapBuffers();
 }
@@ -104,24 +102,22 @@ void keyboard(unsigned char key, int x, int y){
 			break;
 			
 		case 'i':
-			zd+=1.0;
+			obj.move(0);
 			break;
 		case 'k':
-			zd-=1.0;
+			obj.move(1);
 			break;
 			
 		case 'j':
-			xd+=1.0;
+			obj.move(4);
 			break;
 		case 'l':
-			xd-=1.0;
+			obj.move(5);
 			break;
 			
 		case 'u':
-			yd+=1.0;
 			break;
 		case 'o':
-			yd-=1.0;
 			break;
 			
 		case 'f':
@@ -130,8 +126,8 @@ void keyboard(unsigned char key, int x, int y){
 		case 'g':
 			break;
 			
-		case 0x20:
-			std::cout << xd << " , " << yd << " , "<< zd << std::endl;
+		case 0x20:	//スペースキー
+			obj.return_position();
 			break;
 			
 		default:
@@ -144,7 +140,13 @@ void keyboardup(unsigned char key, int x, int y){
 }
 
 void timer(int value){
-	glutTimerFunc(17, timer, 0);
-	rot+=0.1;
+	static int ticks;
+	glutTimerFunc(timer_sec, timer, 0);
 	display();
+	if (ticks > 1000){
+		obj.drop();
+		ticks = 0;
+	}else{
+		ticks += timer_sec;
+	}
 }

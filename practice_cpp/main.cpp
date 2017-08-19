@@ -13,7 +13,6 @@
 //グローバル変数宣言
 const char game_title[] = "ziggurat";
 
-
 int main(int argc, char *argv[]){
 	glutInit(&argc, argv);	//glutの初期化
 	srand((unsigned int)time(NULL));	//乱数の初期化
@@ -35,7 +34,8 @@ int main(int argc, char *argv[]){
 	init();
 	
 	//最初の1ブロックを作成
-	blocks_obj[0] = Block();
+	//Block obj;
+	block_num = 1;
 	
 	glutMainLoop();//終了はexitで行う
 	

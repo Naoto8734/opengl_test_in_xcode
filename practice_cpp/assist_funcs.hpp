@@ -17,10 +17,8 @@
 #include "blocks.hpp"
 
 //グローバル変数
-extern double xd;
-extern double yd;
-extern double zd;
 extern const GLfloat red[];
+extern int block_num;
 
 //プロトタイプ宣言
 void init();	//コールバック関数群
