@@ -16,6 +16,10 @@
 
 class Block{
 private:
+	static const GLdouble vertex[][3];
+	static const int face[][4];
+	static const GLdouble normal[][3];
+	static const GLdouble pos_limit;
 	int block_type;	//0~7までの8種類。
 	GLdouble pos_x;	//ブロックの座標
 	GLdouble pos_y;
@@ -32,4 +36,6 @@ public:
 };
 
 extern Block obj;
+
+
 #endif /* blocks_hpp */

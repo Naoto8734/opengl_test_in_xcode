@@ -20,6 +20,7 @@ static const GLfloat pos0[] = {0.0, 25.0, 3.0, 1.0};
 static const GLfloat pos1[] = {0.0, 25.0, -3.0, 1.0};
 int block_num  = 0;
 static int timer_sec = 17;
+static GLdouble rot;
 
 void init(){
 	glClearColor(0.1, 0.6, 0.1, 1.0);	//緑でクリア
@@ -45,7 +46,7 @@ void display(){
 	glLightfv(GL_LIGHT0, GL_POSITION, pos0);
 	glLightfv(GL_LIGHT1, GL_POSITION, pos1);
 	
-	//glRotated(rot, 0.0, 1.0, 0.0);
+	glRotated(rot, 0.0, 1.0, 0.0);
 	
 	//モデリング変換
 	//地面の描画
@@ -61,7 +62,6 @@ void display(){
 		}
 	}
 	glEnd();
-	glTranslated(0.5, 0.0, 0.5);
 	
 	obj.draw();
 	
@@ -143,6 +143,7 @@ void timer(int value){
 	static int ticks;
 	glutTimerFunc(timer_sec, timer, 0);
 	display();
+	rot += 0.1;
 	if (ticks > 1000){
 		obj.drop();
 		ticks = 0;

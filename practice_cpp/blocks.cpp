@@ -8,6 +8,37 @@
 
 #include "blocks.hpp"
 
+const GLdouble Block::vertex[][3] = {
+	{ -1.0, 0.0, -1.0 }, /* A */
+	{  1.0, 0.0, -1.0 }, /* B */
+	{  1.0, 1.0, -1.0 }, /* C */
+	{ -1.0, 1.0, -1.0 }, /* D */
+	{ -1.0, 0.0,  1.0 }, /* E */
+	{  1.0, 0.0,  1.0 }, /* F */
+	{  1.0, 1.0,  1.0 }, /* G */
+	{ -1.0, 1.0,  1.0 }  /* H */
+};
+
+const int Block::face[][4] = {
+	{ 0, 1, 2, 3 },
+	{ 1, 5, 6, 2 },
+	{ 5, 4, 7, 6 },
+	{ 4, 0, 3, 7 },
+	{ 4, 5, 1, 0 },
+	{ 3, 2, 6, 7 }
+};
+
+const GLdouble Block::normal[][3] = {
+	{ 0.0, 0.0,-1.0 },
+	{ 1.0, 0.0, 0.0 },
+	{ 0.0, 0.0, 1.0 },
+	{-1.0, 0.0, 0.0 },
+	{ 0.0,-1.0, 0.0 },
+	{ 0.0, 1.0, 0.0 }
+};
+
+const GLdouble Block::pos_limit = 8.0;
+
 //ブロックのクラス。
 Block::Block(){
 	//コンストラクタ
@@ -45,14 +76,17 @@ void Block::draw(){
 	//（switch文が重そうなので、コンストラクタに格納しておく。）
 	glPushMatrix();
 	glTranslated(pos_x, pos_y, pos_z);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, red);
-	glutSolidCube(1.0);
-//	glTranslated(1.0, 0.0, 0.0);
-//	glutSolidCube(1.0);
-//	glTranslated(1.0, 0.0, 0.0);
-//	glutSolidCube(1.0);
-//	glTranslated(1.0, 0.0, 0.0);
-//	glutSolidCube(1.0);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, red);
+	glFrontFace(GL_CW);
+	glBegin(GL_LINES);
+	for (int j = 0; j < 6; ++j) {
+		//glNormal3dv(normal[j]);
+		for (int i = 0; i < 4; ++i) {
+			glVertex3dv(vertex[face[j][i]]);
+		}
+	}
+	glEnd();
+	glFrontFace(GL_CCW);
 	glPopMatrix();
 }
 
@@ -62,15 +96,19 @@ void Block::move(unsigned int direction){
 		switch (direction) {
 			case 0:
 				pos_x += 1.0;
+				if (pos_x > pos_limit)pos_x = pos_limit;
 				break;
 			case 1:
 				pos_x -= 1.0;
+				if (pos_x < -pos_limit)pos_x = -pos_limit;
 				break;
 			case 2:
 				pos_y += 1.0;
+				if (pos_y > pos_limit)pos_y = pos_limit;
 				break;
 			case 3:
 				pos_y -= 1.0;
+				if (pos_y < -pos_limit)pos_y = -pos_limit;
 				break;
 			case 4:
 				pos_z += 1.0;

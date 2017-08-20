@@ -29,7 +29,6 @@ int main(int argc, char *argv[]){
 	glutKeyboardFunc(keyboard);
 	glutKeyboardUpFunc(keyboardup);
 	glutTimerFunc(17, timer, 0);
-	
 	//初期化
 	init();
 	
